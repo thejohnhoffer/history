@@ -7,8 +7,8 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 const PRETTY = !!process.env.PRETTY;
-const SOURCE_DIR = 'packages/history';
-const OUTPUT_DIR = 'build/history';
+const SOURCE_DIR = 'packages/use-hash-history';
+const OUTPUT_DIR = 'build/use-hash-history';
 
 const modules = [
   {
@@ -18,7 +18,7 @@ const modules = [
       format: 'esm',
       sourcemap: !PRETTY
     },
-    external: ['@babel/runtime/helpers/esm/extends'],
+    external: ['@babel/runtime/helpers/esm/extends', 'history'],
     plugins: [
       typescript({
         tsconfig: `${SOURCE_DIR}/tsconfig.json`,
@@ -41,15 +41,15 @@ const modules = [
       compiler(),
       copy({
         targets: [
-          { src: 'README.md', dest: OUTPUT_DIR },
-          { src: 'LICENSE', dest: OUTPUT_DIR },
+          { src: `${SOURCE_DIR}/README.md`, dest: OUTPUT_DIR },
+          { src: `${SOURCE_DIR}/LICENSE`, dest: OUTPUT_DIR },
           { src: `${SOURCE_DIR}/package.json`, dest: OUTPUT_DIR }
         ],
         verbose: true
       })
     ].concat(PRETTY ? prettier({ parser: 'babel' }) : [])
   },
-  ...['browser', 'hash'].map((env) => {
+  ...['hash'].map((env) => {
     return {
       input: `${SOURCE_DIR}/${env}.ts`,
       output: {
@@ -57,6 +57,7 @@ const modules = [
         format: 'esm',
         sourcemap: !PRETTY
       },
+      external: ['history'],
       plugins: [
         typescript({
           tsconfig: `${SOURCE_DIR}/tsconfig.json`,
@@ -83,10 +84,11 @@ const webModules = [
   {
     input: `${SOURCE_DIR}/index.ts`,
     output: {
-      file: `${OUTPUT_DIR}/history.development.js`,
+      file: `${OUTPUT_DIR}/use-hash-history.development.js`,
       format: 'esm',
       sourcemap: !PRETTY
     },
+    external: ['history'],
     plugins: [
       typescript({
         tsconfig: `${SOURCE_DIR}/tsconfig.json`,
@@ -113,10 +115,11 @@ const webModules = [
   {
     input: `${SOURCE_DIR}/index.ts`,
     output: {
-      file: `${OUTPUT_DIR}/history.production.min.js`,
+      file: `${OUTPUT_DIR}/use-hash-history.production.min.js`,
       format: 'esm',
       sourcemap: !PRETTY
     },
+    external: ['history'],
     plugins: [
       typescript({
         tsconfig: `${SOURCE_DIR}/tsconfig.json`,
@@ -147,11 +150,12 @@ const globals = [
   {
     input: `${SOURCE_DIR}/index.ts`,
     output: {
-      file: `${OUTPUT_DIR}/umd/history.development.js`,
+      file: `${OUTPUT_DIR}/umd/use-hash-history.development.js`,
       format: 'umd',
       sourcemap: !PRETTY,
       name: 'HistoryLibrary'
     },
+    external: ['history'],
     plugins: [
       typescript({
         tsconfig: `${SOURCE_DIR}/tsconfig.json`
@@ -173,11 +177,12 @@ const globals = [
   {
     input: `${SOURCE_DIR}/index.ts`,
     output: {
-      file: `${OUTPUT_DIR}/umd/history.production.min.js`,
+      file: `${OUTPUT_DIR}/umd/use-hash-history.production.min.js`,
       format: 'umd',
       sourcemap: !PRETTY,
       name: 'HistoryLibrary'
     },
+    external: ['history'],
     plugins: [
       typescript({
         tsconfig: `${SOURCE_DIR}/tsconfig.json`
@@ -206,6 +211,7 @@ const node = [
       file: `${OUTPUT_DIR}/main.js`,
       format: 'cjs'
     },
+    external: ['history'],
     plugins: PRETTY ? prettier({ parser: 'babel' }) : []
   }
 ];

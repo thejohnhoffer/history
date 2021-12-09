@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "debug": "npm run debug --ws packages/use-hash-history",
     "build": "node ./scripts/build.js",
     "clean": "git clean -fdX .",
     "lint": "eslint .",
@@ -60,10 +61,17 @@
   },
   "workspaces": {
     "packages": [
-      "packages/history"
+      "packages/history",
+      "packages/use-hash-history"
     ]
   },
   "filesize": {
+    "build/use-hash-history/use-hash-history.production.min.js": {
+      "none": "4 kB"
+    },
+    "build/use-hash-history/umd/use-hash-history.production.min.js": {
+      "none": "5 kB"
+    },
     "build/history/history.production.min.js": {
       "none": "5 kB"
     },

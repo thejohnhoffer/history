@@ -1,3 +1,4 @@
+const __DEV__ = true;
 /**
  * Actions represent the type of change to a location value.
  *

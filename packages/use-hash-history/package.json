@@ -1,0 +1,39 @@
+{
+  "name": "use-hash-history",
+  "version": "1.0.1",
+  "description": "A history hook for react-router-dom",
+  "license": "MIT",
+  "author": "John T. Hoffer",
+  "repository": "github:thejohnhoffer/use-hash-history",
+  "contributors": [
+    {
+      "name": "React Training",
+      "email": "hello@reacttraining.com"
+    }
+  ],
+  "scripts": {
+    "debug": "node --trace-deprecation --inspect-brk -r tsm -r esm __debug__/index.js"
+  },
+  "type": "module",
+  "main": "main.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "unpkg": "umd/history.production.min.js",
+  "sideEffects": false,
+  "dependencies": {
+    "@babel/runtime": "^7.7.6",
+    "history": "^5.1.0"
+  },
+  "keywords": [
+    "history",
+    "location"
+  ],
+  "peerDependencies": {
+    "history": "5.x"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "linkedom": "^0.13.0",
+    "tsm": "^2.2.1"
+  }
+}
