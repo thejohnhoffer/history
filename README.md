@@ -10,7 +10,7 @@ and here is a [minimal template](https://github.com/thejohnhoffer/test-history-r
 To install along with `react-router-dom@6.1.1`: 
 
 ```
-yarn add history-noslash@latest react-router-dom@6.1.1
+yarn add history-noslash react-router-dom@6.1.1
 ```
 
 It can be used with `react-router-dom@6.1.1` as follows: 
