@@ -1,8 +1,11 @@
 # History Noslash
 
-This package exists as a stopgap until [Issue #912](https://github.com/remix-run/history[issues/912) is resolved.
+This package exists as a stopgap until [Issue #912](https://github.com/remix-run/history/issues/912) is resolved.
 
-## Installation, usage, live demo
+Here is a [live demo on CodeSandbox](https://codesandbox.io/s/hash-router-history-noslash-sxud8?file=/src/index.js),
+and here is a [minimal template](https://github.com/thejohnhoffer/test-history-router) of the below example.
+
+## Installation and Example
 
 To install along with `react-router-dom@6.1.1`: 
 
@@ -12,7 +15,7 @@ yarn add history-noslash@latest react-router-dom@6.1.1
 
 It can be used with `react-router-dom@6.1.1` as follows: 
 
-```
+```jsx
 import { createHashHistory } from "history-noslash"; // Use of this package
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
