@@ -1,4 +1,4 @@
-# [History Noslash](https://yarnpkg.com/?q=history-noslash)
+# [History Noslash](https://yarnpkg.com/package/history-noslash)
 
 This package exists as a stopgap until [Issue #912](https://github.com/remix-run/history/issues/912) is resolved.
 
