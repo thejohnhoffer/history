@@ -27,7 +27,7 @@ const history = createHashHistory({
 
 const App = () => {
   return (
-    <HistoryRouter basename="" history={history}>
+    <HistoryRouter history={history}>
       <Link to="home">Go to #home</Link>
       <Routes>
         <Route path="home" element={<>content</>} />;
