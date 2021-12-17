@@ -81,6 +81,7 @@ module.exports = function (config) {
       resolve: {
         modules: [path.resolve(__dirname, '../'), 'node_modules'],
         alias: {
+          "use-hash-history": path.resolve(__dirname, '../build/use-hash-history'),
           history: path.resolve(__dirname, '../build/history')
         }
       },
