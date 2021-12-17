@@ -5,10 +5,16 @@
   "license": "MIT",
   "author": "John T. Hoffer",
   "repository": "github:thejohnhoffer/use-hash-history",
-  "contributors": [{
-    "name": "React Training",
-    "email": "hello@reacttraining.com"
-  }],
+  "contributors": [
+    {
+      "name": "React Training",
+      "email": "hello@reacttraining.com"
+    }
+  ],
+  "scripts": {
+    "debug": "node --inspect-brk node_modules/uvu/bin.js -r tsm -r esm __debug__"
+  },
+  "type": "module",
   "main": "main.js",
   "module": "index.js",
   "types": "index.d.ts",
@@ -23,5 +29,13 @@
   ],
   "peerDependencies": {
     "history": "5.x"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "esm": "^3.2.25",
+    "history": "^5.1.0",
+    "linkedom": "^0.13.0",
+    "tsm": "^2.2.1",
+    "uvu": "^0.5.2"
   }
 }

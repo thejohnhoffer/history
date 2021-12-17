@@ -1,4 +1,3 @@
-import expect from 'expect';
 
 import { execSteps } from './utils.js';
 
@@ -14,7 +13,7 @@ export default (history, done) => {
     ({ action, location }) => {
       expect(action).toBe('PUSH');
       expect(location).toMatchObject({
-        pathname: 'home?the=query#the-hash',
+        pathname: '/home?the=query#the-hash',
         search: '',
         hash: ''
       });
@@ -24,7 +23,7 @@ export default (history, done) => {
     ({ action, location }) => {
       expect(action).toBe('PUSH');
       expect(location).toMatchObject({
-        pathname: 'home?another=query#another-hash',
+        pathname: '/?another=query#another-hash',
         search: '',
         hash: ''
       });
