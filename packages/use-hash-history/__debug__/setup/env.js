@@ -55,41 +55,9 @@ const makeGlobalDocument = () => {
   });
 };
 
-class ExecSteps {
-  
-  constructor ({listen, location}) {
-    this.listen = listen
-    this.ctx = {
-      location 
-    }
-  }
-  steps (steps, history, done) {
-    steps.reduce(async (context, step) => {
-      this.ctx = await context;
-      return await new Promise((resolve) => {
-        this.listen((result) => {
-          resolve({
-            ...this.ctx, ...result
-          });
-        });
-        step(this.ctx)
-      });
-    }, this.ctx).then((result) => {
-      done(result)
-    }).catch((e) => {
-      done(e)
-    });
-  }
-}
-
 export function reset() {
   const newGlobal = {
     document: makeGlobalDocument()
   };
   global.document = newGlobal.document;
-  const window = document.defaultView;
-  const {listen, location} = window.history;
-
-  const exec = new ExecSteps({listen, location})
-  global.execSteps = exec.steps.bind(exec)
 }

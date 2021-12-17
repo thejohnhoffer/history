@@ -40,8 +40,8 @@ const modules = [
       compiler(),
       copy({
         targets: [
-          { src: '${SOURCE_DIR}/README.md', dest: OUTPUT_DIR },
-          { src: '${SOURCE_DIR}/LICENSE', dest: OUTPUT_DIR },
+          { src: `${SOURCE_DIR}/README.md`, dest: OUTPUT_DIR },
+          { src: `${SOURCE_DIR}/LICENSE`, dest: OUTPUT_DIR },
           { src: `${SOURCE_DIR}/package.json`, dest: OUTPUT_DIR }
         ],
         verbose: true

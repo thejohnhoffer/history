@@ -5,6 +5,7 @@ import { execSteps, spyOn } from './utils.js';
 export default (history, done) => {
   let steps = [
     ({ location }) => {
+      console.warn({warn: 1, ...location})
       expect(location).toMatchObject({
         pathname: '/'
       });
@@ -12,6 +13,7 @@ export default (history, done) => {
       history.push('/the/path?the=query#the-hash');
     },
     ({ action, location }) => {
+      console.warn({warn: 2, ...location})
       expect(action).toBe('PUSH');
       expect(location).toMatchObject({
         pathname: '/the/path?the=query#the-hash',
@@ -21,7 +23,6 @@ export default (history, done) => {
 
       let { spy, destroy } = spyOn(console, 'warn');
 
-      debugger
       history.push('../other/path?another=query#another-hash');
 
       expect(spy).not.toHaveBeenCalled();
@@ -29,6 +30,7 @@ export default (history, done) => {
       destroy();
     },
     ({ location }) => {
+      console.warn({warn: 3, ...location})
       expect(location).toMatchObject({
         pathname: '../other/path?another=query#another-hash',
         search: '',

@@ -29,5 +29,12 @@
   ],
   "peerDependencies": {
     "history": "5.x"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "history": "^5.1.0",
+    "linkedom": "^0.13.0",
+    "tsm": "^2.2.1",
+    "uvu": "^0.5.2"
   }
 }
