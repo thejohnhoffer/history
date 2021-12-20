@@ -440,7 +440,7 @@ export function createBrowserHistory(
   }
 
   function createHref(to: To) {
-    return createPath(resolvePath(to));
+    return typeof to === 'string' ? to : createPath(to);
   }
 
   // state defaults to `null` because `window.history.state` does
@@ -449,7 +449,7 @@ export function createBrowserHistory(
       pathname: location.pathname,
       hash: '',
       search: '',
-      ...resolvePath(to),
+      ...(typeof to === 'string' ? parsePath(to) : to),
       state,
       key: createKey()
     });
@@ -573,7 +573,7 @@ export function createBrowserHistory(
 // HASH
 ////////////////////////////////////////////////////////////////////////////////
 
-export type HashHistoryOptions = { window?: Window, hashRoot?: string };
+export type HashHistoryOptions = { window?: Window };
 
 /**
  * Hash history stores the location in window.location.hash. This makes it ideal
@@ -586,7 +586,7 @@ export type HashHistoryOptions = { window?: Window, hashRoot?: string };
 export function createHashHistory(
   options: HashHistoryOptions = {}
 ): HashHistory {
-  let { hashRoot = "/", window = document.defaultView! } = options;
+  let { window = document.defaultView! } = options;
   let globalHistory = window.history;
 
   function getIndexAndLocation(): [number, Location] {
@@ -690,8 +690,7 @@ export function createHashHistory(
   }
 
   function createHref(to: To) {
-    let path = resolvePath(to, hashRoot)
-    return getBaseHref() + '#' + createPath(path);
+    return getBaseHref() + '#' + (typeof to === 'string' ? to : createPath(to));
   }
 
   function getNextLocation(to: To, state: any = null): Location {
@@ -699,7 +698,7 @@ export function createHashHistory(
       pathname: location.pathname,
       hash: '',
       search: '',
-      ...resolvePath(to, hashRoot),
+      ...(typeof to === 'string' ? parsePath(to) : to),
       state,
       key: createKey()
     });
@@ -889,15 +888,15 @@ export function createMemoryHistory(
   let blockers = createEvents<Blocker>();
 
   function createHref(to: To) {
-    return createPath(resolvePath(to));
+    return typeof to === 'string' ? to : createPath(to);
   }
 
   function getNextLocation(to: To, state: any = null): Location {
     return readOnly<Location>({
       pathname: location.pathname,
-      hash: '',
       search: '',
-      ...resolvePath(to),
+      hash: '',
+      ...(typeof to === 'string' ? parsePath(to) : to),
       state,
       key: createKey()
     });
@@ -1043,18 +1042,6 @@ function createEvents<F extends Function>(): Events<F> {
 
 function createKey() {
   return Math.random().toString(36).substr(2, 8);
-}
-
-/**
- * Resolve a location as a path, with pathname relative to given root
- */
-function resolvePath(to: To, pathRoot: Pathname = '/'): PartialPath {
-  let path = typeof to === 'string' ? parsePath(to) : to
-  let pathname = path.pathname?.replace(/^\//, pathRoot)
-  return {
-    ...path,
-    pathname
-  }
 }
 
 /**
