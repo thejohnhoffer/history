@@ -18,9 +18,10 @@ const modules = [
       format: 'esm',
       sourcemap: !PRETTY
     },
-    external: ['@babel/runtime/helpers/esm/extends'],
+    external: ['@babel/runtime/helpers/esm/extends', 'history'],
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigDefaults: {
           compilerOptions: {
             declaration: true
@@ -56,8 +57,10 @@ const modules = [
         format: 'esm',
         sourcemap: !PRETTY
       },
+      external: ['history'],
       plugins: [
         typescript({
+          tsconfig: `${SOURCE_DIR}/tsconfig.json`,
           tsconfigDefaults: {
             compilerOptions: {
               declaration: true
@@ -85,8 +88,10 @@ const webModules = [
       format: 'esm',
       sourcemap: !PRETTY
     },
+    external: ['history'],
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigOverride: {
           compilerOptions: {
             target: 'es2016'
@@ -114,8 +119,10 @@ const webModules = [
       format: 'esm',
       sourcemap: !PRETTY
     },
+    external: ['history'],
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigOverride: {
           compilerOptions: {
             target: 'es2016'
@@ -148,8 +155,11 @@ const globals = [
       sourcemap: !PRETTY,
       name: 'HistoryLibrary'
     },
+    external: ['history'],
     plugins: [
-      typescript(),
+      typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`
+      }),
       babel({
         exclude: /node_modules/,
         extensions: ['.ts'],
@@ -172,8 +182,11 @@ const globals = [
       sourcemap: !PRETTY,
       name: 'HistoryLibrary'
     },
+    external: ['history'],
     plugins: [
-      typescript(),
+      typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`
+      }),
       babel({
         exclude: /node_modules/,
         extensions: ['.ts'],
@@ -198,6 +211,7 @@ const node = [
       file: `${OUTPUT_DIR}/main.js`,
       format: 'cjs'
     },
+    external: ['history'],
     plugins: PRETTY ? prettier({ parser: 'babel' }) : []
   }
 ];

@@ -12,7 +12,7 @@
     }
   ],
   "scripts": {
-    "debug": "node --inspect-brk node_modules/uvu/bin.js -r tsm -r esm __debug__"
+    "debug": "node --inspect-brk debug.cjs"
   },
   "type": "module",
   "main": "main.js",

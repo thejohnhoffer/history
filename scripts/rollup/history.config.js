@@ -21,6 +21,7 @@ const modules = [
     external: ['@babel/runtime/helpers/esm/extends'],
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigDefaults: {
           compilerOptions: {
             declaration: true
@@ -58,6 +59,7 @@ const modules = [
       },
       plugins: [
         typescript({
+          tsconfig: `${SOURCE_DIR}/tsconfig.json`,
           tsconfigDefaults: {
             compilerOptions: {
               declaration: true
@@ -87,6 +89,7 @@ const webModules = [
     },
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigOverride: {
           compilerOptions: {
             target: 'es2016'
@@ -116,6 +119,7 @@ const webModules = [
     },
     plugins: [
       typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`,
         tsconfigOverride: {
           compilerOptions: {
             target: 'es2016'
@@ -149,7 +153,9 @@ const globals = [
       name: 'HistoryLibrary'
     },
     plugins: [
-      typescript(),
+      typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`
+      }),
       babel({
         exclude: /node_modules/,
         extensions: ['.ts'],
@@ -173,7 +179,9 @@ const globals = [
       name: 'HistoryLibrary'
     },
     plugins: [
-      typescript(),
+      typescript({
+        tsconfig: `${SOURCE_DIR}/tsconfig.json`
+      }),
       babel({
         exclude: /node_modules/,
         extensions: ['.ts'],
