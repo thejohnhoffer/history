@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "debug": "npm run debug --ws packages/use-hash-history",
     "build": "node ./scripts/build.js",
     "clean": "git clean -fdX .",
     "lint": "eslint .",

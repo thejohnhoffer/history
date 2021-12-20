@@ -61,3 +61,17 @@ export function reset() {
   };
   global.document = newGlobal.document;
 }
+
+export class Debugger {
+  constructor(env) {
+    this.tests = new Map();
+    this.reset = env.reset;
+  }
+  run() {
+    this.tests.forEach(async (fn, label) => {
+      console.log(`Running ${label}`)
+      this.reset();
+      await fn();
+    })
+  }
+}

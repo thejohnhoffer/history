@@ -1,11 +1,8 @@
-import { suite } from "uvu";
-import * as assert from 'uvu/assert';
 import * as ENV from "./setup/env.js";
+import { strict as assert } from 'assert';
 import { useHashHistory } from "../index.ts";
 
-const TestUseHistory = suite("test history hook");
-
-TestUseHistory.before.each(ENV.reset);
+const d = new ENV.Debugger(ENV);
 
 /*
  * Roundtrip test of pathname update
@@ -19,7 +16,7 @@ const testLocationPathname = async ({ fn, listen, input }) => {
   });
 };
 
-TestUseHistory("Runs", async () => {
+d.tests.set("Runs", async () => {
   debugger
   const history = useHashHistory({hashRoot:"/"})
 
@@ -41,7 +38,7 @@ TestUseHistory("Runs", async () => {
     input: '../other/path?another=query#another-hash'
   })
 
-  assert.is(pathname, '../other/path?another=query#another-hash')
+  assert.equal(pathname, '../other/path?another=query#another-hash')
 });
 
-TestUseHistory.run();
+d.run();
