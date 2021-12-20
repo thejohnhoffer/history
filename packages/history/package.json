@@ -16,5 +16,13 @@
   "keywords": [
     "history",
     "location"
-  ]
+  ],
+  "scripts": {
+    "debug": "node --trace-deprecation --inspect-brk -r tsm -r esm __debug__/index.js"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "linkedom": "^0.13.0",
+    "tsm": "^2.2.1"
+  }
 }
